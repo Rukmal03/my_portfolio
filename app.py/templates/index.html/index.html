@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Portfolio</title>
+    <style>
+        /* මුළු පිටුවේම පොදු පෙනුම */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 50px;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* ඩිල්ෂාන්ගේ සයිට් එකේ වැනි සරල විස්තර කොටස */
+        .bio-section {
+            max-width: 600px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* ලෝගෝ එක පේළියට සකසන කොටස (Flexbox) */
+        .tech-logos {
+            display: flex;
+            gap: 20px;
+            /* ලෝගෝ අතර පරතරය */
+            margin-top: 30px;
+            /* ඉහළ ඡේදයේ සිට ඇති පරතරය */
+            align-items: center;
+        }
+
+        /* ලෝගෝ වල ප්‍රමාණය පාලනය කිරීම */
+        .tech-logos img {
+            height: 35px;
+            /* උස එකම මට්ටමක තබයි */
+            width: auto;
+            object-fit: contain;
+            opacity: 0.8;
+            /* තරමක් පැහැදිලි බව අඩු කර අලංකාර නිමාවක් ලබා දෙයි */
+            transition: opacity 0.3s ease;
+        }
+
+        /* මවුස් එක ලෝගෝ එක මතට ගිය විට (Hover) */
+        .tech-logos img:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bio-section">
+        <p>මම Python, MySQL සහ VS Code වැනි තාක්ෂණයන් භාවිතයෙන් විවිධ නිර්මාණ සිදු කරන සංවර්ධකයෙක්මි. මීට අමතරව එදිනෙදා
+            වැඩකටයුතු සඳහා Office 365 මෙවලම්ද බහුලව භාවිතා කරමි.</p>
+
+        <div class="tech-logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg"
+                alt="VS Code">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/MySQL_Logo.svg" alt="MySQL">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Microsoft_Office_logo_%282019%E2%80%93present%29.svg"
+                alt="Office 365">
+        </div>
+    </div>
+
+</body>
+
+</html>
