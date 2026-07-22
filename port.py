@@ -3,7 +3,7 @@ import streamlit as st
 # Page config එක එක පාරක් පමණක් මුලින්ම යොදන්න
 st.set_page_config(
     page_title="Rukmal Manoj | Portfolio",
-    page_icon="💼",
+    page_icon="👁️⃤ ",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -136,7 +136,6 @@ with tab2:
         st.video("https://youtu.be/88r7el5zshc")
 
 with tab3:
-    with tab3:
     st.write("##")
     c1, c2, c3 = st.columns(3)
     with c1:
