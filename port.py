@@ -3,7 +3,7 @@ import streamlit as st
 # Page config එක එක පාරක් පමණක් මුලින්ම යොදන්න
 st.set_page_config(
     page_title="Rukmal Manoj | Portfolio",
-    page_icon="💼",
+    page_icon="👁️⃤ ",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
