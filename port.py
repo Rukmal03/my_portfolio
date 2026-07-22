@@ -1,14 +1,14 @@
 import streamlit as st
 
-# Page config එක එක පාරක් පමණක් මුලින්ම යොදන්න
+# Page config
 st.set_page_config(
     page_title="Rukmal Manoj | Portfolio",
-    page_icon="👁️⃤ ",
+    page_icon="💼",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# Editorial Minimalist CSS Theme
+#  CSS Theme
 st.markdown("""
     <style>
     /* Warm grey/taupe full-bleed background */
@@ -102,7 +102,6 @@ st.markdown('<div class="editorial-divider"></div>', unsafe_allow_html=True)
 col_left, col_center, col_right = st.columns([1, 2, 1])
 with col_center:
     try:
-        # Warning එක විසඳීමට use_container_width=True භාවිත කර ඇත
         st.image("rukmal.jpg", use_container_width=True)
     except:
         st.warning("Profile image (rukmal.jpg) not found in directory.")
