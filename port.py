@@ -136,6 +136,7 @@ with tab2:
         st.video("https://youtu.be/88r7el5zshc")
 
 with tab3:
+    with tab3:
     st.write("##")
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -154,25 +155,27 @@ with tab3:
     WEB3FORMS_ACCESS_KEY = "af82c152-73aa-42f8-8d53-53e162073c10"
 
     contact_form_html = f"""
-    <form action="https://api.web3forms.com/submit" method="POST" style="background-color: rgba(255,255,255,0.4); padding: 20px; border-radius: 6px; border: 1px solid #b5b1b4;">
-        <input type="hidden" name="access_key" value="{WEB3FORMS_ACCESS_KEY}">
-        
-        <div style="margin-bottom: 15px;">
-            <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Name</label><br>
-            <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px;">
-        </div>
-        <div style="margin-bottom: 15px;">
-            <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Email Address</label><br>
-            <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px;">
-        </div>
-        <div style="margin-bottom: 20px;">
-            <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Message</label><br>
-            <textarea name="message" rows="4" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px; resize: vertical;"></textarea>
-        </div>
-        
-        <button type="submit" style="background-color: #333333; color: white; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px;">
-            Send Message
-        </button>
-    </form>
+    <div style="width: 100%; max-width: 100%; overflow-x: hidden;">
+        <form action="https://api.web3forms.com/submit" method="POST" style="background-color: rgba(255,255,255,0.4); padding: 15px; border-radius: 6px; border: 1px solid #b5b1b4;">
+            <input type="hidden" name="access_key" value="{WEB3FORMS_ACCESS_KEY}">
+            
+            <div style="margin-bottom: 12px;">
+                <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Name</label><br>
+                <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px; box-sizing: border-box;">
+            </div>
+            <div style="margin-bottom: 12px;">
+                <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Email Address</label><br>
+                <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px; box-sizing: border-box;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Message</label><br>
+                <textarea name="message" rows="4" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px; resize: vertical; box-sizing: border-box;"></textarea>
+            </div>
+            
+            <button type="submit" style="background-color: #333333; color: white; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px;">
+                Send Message
+            </button>
+        </form>
+    </div>
     """
-    st.components.v1.html(contact_form_html, height=450)
+    st.components.v1.html(contact_form_html, height=480, scrolling=True)
