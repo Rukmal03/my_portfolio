@@ -9,21 +9,31 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ----------------- GLOBAL STYLING & NAVIGATION EFFECT -----------------
+# ----------------- GLOBAL STYLING & MOBILE RESPONSIVENESS -----------------
 st.markdown("""
     <!-- Load FontAwesome Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    /* Warm grey/taupe full-bleed background */
-    .stApp {
-        background-color: #d5d1d4;
+    /* Prevent blank white screen by forcing app container height and background */
+    html, body, [data-testid="stAppViewContainer"], .stApp {
+        background-color: #d5d1d4 !important;
         color: #111111 !important;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        min-height: 100vh !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Force block container padding for mobile viewports */
+    [data-testid="stMainBlockContainer"] {
+        padding-top: 1.5rem !important;
+        padding-bottom: 2rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 
     /* =========================================================
-       GLOBAL TEXT OPACITY & READABILITY OVERRIDES
+       GLOBAL TEXT READABILITY
        ========================================================= */
     p, span, label, h1, h2, h3, h4, h5, h6, div, a {
         opacity: 1 !important;
@@ -37,20 +47,19 @@ st.markdown("""
     }
 
     /* =========================================================
-       CUSTOM NAVIGATION BAR WITH UNDERLINE SEPARATOR
+       RESPONSIVE NAVIGATION BAR
        ========================================================= */
     
-    /* Center the horizontal radio group container */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] {
         display: flex !important;
         justify-content: center !important;
-        gap: 16px !important;
+        gap: 10px !important;
         flex-wrap: wrap !important;
         margin-bottom: 0rem !important;
         padding-bottom: 12px !important;
     }
 
-    /* REMOVE ALL STREAMLIT RADIO DOTS & SVGs */
+    /* HIDE ALL STREAMLIT RADIO DOTS & SVGs */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label > div:first-child,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label svg,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label input,
@@ -66,34 +75,30 @@ st.markdown("""
     /* Navigation Button Base Styling */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label {
         position: relative !important;
-        background-color: rgba(255, 255, 255, 0.6) !important;
+        background-color: rgba(255, 255, 255, 0.7) !important;
         border: 1px solid rgba(150, 150, 150, 0.8) !important;
         border-radius: 12px !important;
-        padding: 12px 28px !important;
+        padding: 10px 18px !important;
         cursor: pointer !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         overflow: hidden !important;
-        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
         outline: none !important;
     }
 
-    /* Text & Emoji inside navigation buttons */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label p {
         font-family: 'Helvetica Neue', Arial, sans-serif !important;
-        font-size: 0.95rem !important;
+        font-size: 0.88rem !important;
         font-weight: 700 !important;
-        letter-spacing: 0.6px !important;
         color: #111111 !important;
-        opacity: 1 !important;
         margin: 0 !important;
         z-index: 2 !important;
-        transition: color 0.3s ease !important;
     }
 
-    /* CUSTOM ANIMATED BOTTOM BAR FOR ACTIVE TAB */
+    /* ACTIVE TAB UNDERLINE */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label::after {
         content: '' !important;
         position: absolute !important;
@@ -103,29 +108,8 @@ st.markdown("""
         height: 3px !important;
         background: #000000 !important;
         border-radius: 3px 3px 0 0 !important;
-        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition: all 0.3s ease !important;
         transform: translateX(-50%) !important;
-    }
-
-    /* HOVER STATE */
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label:hover {
-        background-color: #ffffff !important;
-        border-color: #000000 !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
-    }
-
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label:hover::after {
-        width: 60% !important;
-    }
-
-    /* ACTIVE / SELECTED STATE */
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[data-checked="true"],
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label:has(input:checked) {
-        background-color: #ffffff !important;
-        border-color: #000000 !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15) !important;
     }
 
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[data-checked="true"]::after,
@@ -140,48 +124,45 @@ st.markdown("""
         height: 1px;
         background-color: #888888;
         margin-top: 0rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     /* =========================================================
-       EDITORIAL PAGE STYLES & SOCIAL ICONS STYLING
+       EDITORIAL PAGE STYLES & MOBILE MEDIA QUERIES
        ========================================================= */
     .editorial-title {
         text-align: center;
-        font-size: 2.2rem;
+        font-size: 2rem;
         font-weight: 800 !important;
         color: #000000 !important;
-        opacity: 1 !important;
         margin-top: 0.5rem;
         margin-bottom: 1rem;
     }
 
     .editorial-bio {
         text-align: center;
-        font-size: 1.05rem;
-        line-height: 1.65;
+        font-size: 0.95rem;
+        line-height: 1.6;
         color: #111111 !important;
-        opacity: 1 !important;
         font-weight: 500 !important;
         max-width: 800px;
         margin: 0 auto 1.5rem auto;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        padding: 0 10px;
     }
 
     .editorial-divider {
-        width: 120px;
+        width: 100px;
         height: 1px;
         background-color: #666666;
-        margin: 0 auto 2rem auto;
+        margin: 0 auto 1.5rem auto;
     }
 
     .name-badge {
         background-color: #ffffff;
         color: #000000 !important;
-        opacity: 1 !important;
-        padding: 8px 24px;
+        padding: 8px 20px;
         font-family: 'Helvetica Neue', Arial, sans-serif;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 800;
         letter-spacing: 2px;
         border: 1px solid #888888;
@@ -191,57 +172,54 @@ st.markdown("""
         box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
-    /* SOCIAL MEDIA ICONS BAR BELOW NAME BADGE */
     .social-icons-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px;
-        margin-top: 20px;
+        gap: 15px;
+        margin-top: 18px;
     }
 
     .social-icon-link {
         color: #333333 !important;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         text-decoration: none !important;
-        transition: all 0.3s ease;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.6);
         border: 1px solid rgba(150, 150, 150, 0.5);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     }
 
-    .social-icon-link:hover {
-        color: #ffffff !important;
-        background-color: #222222 !important;
-        border-color: #222222 !important;
-        transform: translateY(-3px) scale(1.1);
-        box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    /* Mobile specific adjustments */
+    @media (max-width: 600px) {
+        .editorial-title { font-size: 1.6rem; }
+        .editorial-bio { font-size: 0.9rem; }
+        [data-testid="stMainBlockContainer"] [role="radiogroup"] > label {
+            padding: 8px 12px !important;
+        }
+        [data-testid="stMainBlockContainer"] [role="radiogroup"] > label p {
+            font-size: 0.8rem !important;
+        }
     }
     </style>
 """, unsafe_allow_html=True)
 
-# ----------------- TOP MAIN PAGE NAVIGATION BAR -----------------
+# ----------------- TOP NAVIGATION BAR -----------------
 page = st.radio(
     "Navigation",
-    [" Home", " What IF", " Game Plays", " Contact Details"],
+    ["🏠 Home", "👽 What IF", "🎮 Game Plays", "✉️ Contact Details"],
     horizontal=True,
     label_visibility="collapsed"
 )
 
-# Line drawn directly under control tabs
 st.markdown('<div class="nav-divider"></div>', unsafe_allow_html=True)
 
-# Extract page title without emoji
-page_name = page.split(" ", 1)[1] if " " in page else page
-
-# ----------------- PAGE 1: HOME (ABOUT ME) -----------------
-if page_name == "Home":
+# ----------------- PAGE ROUTING -----------------
+if page.endswith("Home"):
     st.markdown('<div class="editorial-title">About Me</div>',
                 unsafe_allow_html=True)
 
@@ -270,13 +248,11 @@ if page_name == "Home":
             st.info(
                 "💡 Place `rukmal.jpg` in your project directory to display your photo here.")
 
-        # Name Badge
         st.markdown(
             '<div style="display:flex; justify-content:center;"><div class="name-badge">Rukmal Manoj</div></div>',
             unsafe_allow_html=True
         )
 
-        # ── SOCIAL MEDIA ICONS BAR ──
         st.markdown(
             """
             <div class="social-icons-container">
@@ -300,21 +276,17 @@ if page_name == "Home":
             unsafe_allow_html=True
         )
 
-# ----------------- PAGE 2: WHAT IF -----------------
-elif page_name == "What IF":
+elif page.endswith("What IF"):
     st.title("What IF")
-    st.write("##")
     st.write("Welcome Homies.")
     st.markdown("### 🎞️ Featured Projects")
     st.info("Portfolio showcase pending.")
 
-# ----------------- PAGE 3: GAME PLAYS -----------------
-elif page_name == "Game Plays":
+elif page.endswith("Game Plays"):
     st.title("Game Plays")
-    st.write("##")
     st.write("Game Plays By **@lbedo**.")
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1, 1])
     with col1:
         st.subheader("Ghost Of Tsushima")
         st.video("https://youtu.be/xU6p9t3xV2A")
@@ -322,12 +294,10 @@ elif page_name == "Game Plays":
         st.subheader("Call of Duty: WWII")
         st.video("https://youtu.be/88r7el5zshc")
 
-# ----------------- PAGE 4: CONTACT DETAILS -----------------
-elif page_name == "Contact Details":
+elif page.endswith("Contact Details"):
     st.title("Contact Details")
-    st.write("##")
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3 = st.columns([1, 1, 1])
     with c1:
         st.markdown(
             "📧 **Email**\n\n[rukmalmanoj651@gmail.com](mailto:rukmalmanoj651@gmail.com)")
@@ -344,21 +314,21 @@ elif page_name == "Contact Details":
     WEB3FORMS_ACCESS_KEY = "af82c152-73aa-42f8-8d53-53e162073c10"
 
     contact_form_html = f"""
-    <div style="width: 100%; max-width: 100%; overflow-x: hidden;">
-        <form action="https://api.web3forms.com/submit" method="POST" style="background-color: rgba(255,255,255,0.6); padding: 20px; border-radius: 6px; border: 1px solid #999999;">
+    <div style="width: 100%; max-width: 100%; box-sizing: border-box;">
+        <form action="https://api.web3forms.com/submit" method="POST" style="background-color: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px; border: 1px solid #999999;">
             <input type="hidden" name="access_key" value="{WEB3FORMS_ACCESS_KEY}">
             
             <div style="margin-bottom: 12px;">
-                <label style="font-weight: 600; font-size: 0.95rem; font-family: sans-serif; color: #111111;">Name</label><br>
-                <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #777777; background: rgba(255,255,255,0.95); color: #000000; border-radius: 4px; box-sizing: border-box;">
+                <label style="font-weight: 600; font-size: 0.9rem; font-family: sans-serif; color: #111111;">Name</label><br>
+                <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #777777; background: #ffffff; color: #000000; border-radius: 4px; box-sizing: border-box;">
             </div>
             <div style="margin-bottom: 12px;">
-                <label style="font-weight: 600; font-size: 0.95rem; font-family: sans-serif; color: #111111;">Email Address</label><br>
-                <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #777777; background: rgba(255,255,255,0.95); color: #000000; border-radius: 4px; box-sizing: border-box;">
+                <label style="font-weight: 600; font-size: 0.9rem; font-family: sans-serif; color: #111111;">Email Address</label><br>
+                <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #777777; background: #ffffff; color: #000000; border-radius: 4px; box-sizing: border-box;">
             </div>
             <div style="margin-bottom: 15px;">
-                <label style="font-weight: 600; font-size: 0.95rem; font-family: sans-serif; color: #111111;">Message</label><br>
-                <textarea name="message" rows="4" required style="width: 100%; padding: 8px; border: 1px solid #777777; background: rgba(255,255,255,0.95); color: #000000; border-radius: 4px; resize: vertical; box-sizing: border-box;"></textarea>
+                <label style="font-weight: 600; font-size: 0.9rem; font-family: sans-serif; color: #111111;">Message</label><br>
+                <textarea name="message" rows="4" required style="width: 100%; padding: 8px; border: 1px solid #777777; background: #ffffff; color: #000000; border-radius: 4px; resize: vertical; box-sizing: border-box;"></textarea>
             </div>
             
             <button type="submit" style="background-color: #111111; color: white; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px;">
@@ -367,4 +337,4 @@ elif page_name == "Contact Details":
         </form>
     </div>
     """
-    st.components.v1.html(contact_form_html, height=420, scrolling=False)
+    st.components.v1.html(contact_form_html, height=500, scrolling=True)
