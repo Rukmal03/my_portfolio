@@ -1,13 +1,14 @@
 import streamlit as st
 
-# ----------------- CONFIGURATION & THEMING -----------------
+# Page config එක එක පාරක් පමණක් මුලින්ම යොදන්න
 st.set_page_config(
     page_title="Rukmal Manoj | Portfolio",
     page_icon="💼",
-    layout="centered"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
-# Editorial Minimalist CSS Theme (Matching the image)
+# Editorial Minimalist CSS Theme
 st.markdown("""
     <style>
     /* Warm grey/taupe full-bleed background */
@@ -16,66 +17,58 @@ st.markdown("""
         color: #4a4a4a;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-    /* Standard, clean, and bold header text */
-.editorial-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold !important;
-    color: #FFFFFF !important;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
-
-/* Standard, clean, and bold header text */
-.editorial-bio {
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #FFFFFF !important;
-    opacity: 0. !important;
-    max-width: 750px;
-    margin: 0 auto 2rem auto;
-    font-weight: normal !important;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-    }
     
-    /* Thin dividing line matching the screenshot */
+    /* Header title */
+    .editorial-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: bold !important;
+        color: #FFFFFF !important;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Bio text - Fix opacity issue */
+    .editorial-bio {
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #FFFFFF !important;
+        opacity: 1 !important;
+        max-width: 90%;
+        margin: 0 auto 1.5rem auto;
+        font-weight: normal !important;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Thin dividing line */
     .editorial-divider {
-        width: 150px;
+        width: 120px;
         height: 1px;
         background-color: #999999;
-        margin: 0 auto 2.5rem auto;
-    }
-    
-    /* Container block to center your profile image */
-    .image-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 2rem;
+        margin: 0 auto 2rem auto;
     }
 
-    /* Name Badge overlay style from the image */
+    /* Name Badge overlay style */
     .name-badge {
         background-color: #ffffff;
         color: #000000;
         padding: 8px 24px;
         font-family: 'Helvetica Neue', Arial, sans-serif;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
         letter-spacing: 2px;
         border: 1px solid #c0bec1;
         text-transform: uppercase;
-        margin-top: -20px;
+        margin-top: -15px;
         z-index: 10;
         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    
-    /* Clean tab styling modifications to keep it premium */
+
+    /* Clean tab styling */
     .stTabs [data-baseweb="tab-list"] {
         justify-content: center;
+        flex-wrap: wrap;
     }
     .stTabs [data-baseweb="tab"] {
         font-size: 0.9rem;
@@ -86,7 +79,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ----------------- EDITORIAL HEADER (MATCHING SCREENSHOT) -----------------
+# ----------------- EDITORIAL HEADER -----------------
 st.markdown('<div class="editorial-title">About Me</div>',
             unsafe_allow_html=True)
 
@@ -105,10 +98,14 @@ st.markdown(
 
 st.markdown('<div class="editorial-divider"></div>', unsafe_allow_html=True)
 
-# Centered Image Layout with the structured white name box underneath
+# Centered Image Layout - Mobile Responsive
 col_left, col_center, col_right = st.columns([1, 2, 1])
 with col_center:
-    st.image("rukmal.jpg", use_container_width=True)
+    try:
+        st.image("rukmal.jpg", use_column_width=True)
+    except:
+        st.warning("Profile image (rukmal.jpg) not found in directory.")
+
     st.markdown(
         '<div style="display:flex; justify-content:center;"><div class="name-badge">Rukmal Manoj</div></div>',
         unsafe_allow_html=True
@@ -117,21 +114,19 @@ with col_center:
 st.write("##")  # Spacer
 
 # ----------------- TABS FOR OTHER CONTENT -----------------
-tab1, tab2, tab3 = st.tabs(
-    [" What IF", " Game Playes ", " Contact Details"])
+tab1, tab2, tab3 = st.tabs(["What IF", "Game Plays", "Contact Details"])
 
 with tab1:
     st.write("##")
-    st.write(
-        "Welcome homies.")
+    st.write("Welcome homies.")
     st.markdown("### 🎞️ Featured Projects")
     st.info("Portfolio showcase pending.")
 
 with tab2:
     st.write("##")
-    st.write("Game Playes By @lbedo.")
+    st.write("Game Plays By @lbedo.")
 
-    col1, col2 = st.columns(2, gap="medium")
+    col1, col2 = st.columns([1, 1])
     with col1:
         st.subheader("Ghost Of Tsushima")
         st.video("https://youtu.be/xU6p9t3xV2A")
@@ -155,29 +150,28 @@ with tab3:
     st.write("---")
     st.subheader("Send a Message")
 
-    # Web3Forms Integration
     WEB3FORMS_ACCESS_KEY = "af82c152-73aa-42f8-8d53-53e162073c10"
 
     contact_form_html = f"""
-    <form action="https://api.web3forms.com/submit" method="POST" style="background-color: rgba(255,255,255,0.4); padding: 24px; border-radius: 4px; border: 1px solid #b5b1b4;">
+    <form action="https://api.web3forms.com/submit" method="POST" style="background-color: rgba(255,255,255,0.4); padding: 20px; border-radius: 6px; border: 1px solid #b5b1b4;">
         <input type="hidden" name="access_key" value="{WEB3FORMS_ACCESS_KEY}">
         
         <div style="margin-bottom: 15px;">
             <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Name</label><br>
-            <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8);">
+            <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px;">
         </div>
         <div style="margin-bottom: 15px;">
             <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Email Address</label><br>
-            <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8);">
+            <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px;">
         </div>
         <div style="margin-bottom: 20px;">
             <label style="font-weight: 500; font-size: 0.9rem; font-family: sans-serif;">Message</label><br>
-            <textarea name="message" rows="4" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); resize: vertical;"></textarea>
+            <textarea name="message" rows="4" required style="width: 100%; padding: 8px; border: 1px solid #a09da0; background: rgba(255,255,255,0.8); border-radius: 4px; resize: vertical;"></textarea>
         </div>
         
-        <button type="submit" style="background-color: #333333; color: white; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; text-transform: uppercase; letter-spacing: 1px;">
+        <button type="submit" style="background-color: #333333; color: white; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px;">
             Send Message
         </button>
     </form>
     """
-    st.components.v1.html(contact_form_html, height=420)
+    st.components.v1.html(contact_form_html, height=450)
