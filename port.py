@@ -3,7 +3,7 @@ import streamlit as st
 # Page config එක එක පාරක් පමණක් මුලින්ම යොදන්න
 st.set_page_config(
     page_title="Rukmal Manoj | Portfolio",
-    page_icon="👁️⃤ ",
+    page_icon="💼",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -28,7 +28,7 @@ st.markdown("""
         margin-bottom: 1rem;
     }
 
-    /* Bio text - Fix opacity issue */
+    /* Bio text */
     .editorial-bio {
         text-align: center;
         font-size: 1rem;
@@ -102,7 +102,8 @@ st.markdown('<div class="editorial-divider"></div>', unsafe_allow_html=True)
 col_left, col_center, col_right = st.columns([1, 2, 1])
 with col_center:
     try:
-        st.image("rukmal.jpg", use_column_width=True)
+        # Warning එක විසඳීමට use_container_width=True භාවිත කර ඇත
+        st.image("rukmal.jpg", use_container_width=True)
     except:
         st.warning("Profile image (rukmal.jpg) not found in directory.")
 
