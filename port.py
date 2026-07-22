@@ -15,7 +15,7 @@ st.markdown("""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    /* Prevent blank screen & ensure height for both PC and Mobile */
+    /* Prevent blank screen & ensure full view height */
     html, body, [data-testid="stAppViewContainer"], .stApp {
         background-color: #d5d1d4 !important;
         color: #111111 !important;
@@ -23,33 +23,35 @@ st.markdown("""
         min-height: 100vh !important;
     }
 
+    /* FIX: Top Padding added to push navigation panel down into view */
     [data-testid="stMainBlockContainer"] {
-        padding-top: 1rem !important;
+        padding-top: 4.5rem !important;
         padding-bottom: 2rem !important;
         max-width: 1000px !important;
         margin: 0 auto !important;
     }
 
-    /* GLOBAL TEXT OPACITY */
+    /* GLOBAL TEXT READABILITY */
     p, span, label, h1, h2, h3, h4, h5, h6, div, a {
         opacity: 1 !important;
         color: #111111 !important;
     }
 
-    /* Hide Sidebar expand button */
+    /* Hide Sidebar collapse button */
     [data-testid="stSidebarCollapseButton"] { display: none !important; }
 
-    /* NAVIGATION BAR STYLING */
+    /* NAVIGATION BAR CONTAINER */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] {
         display: flex !important;
         justify-content: center !important;
-        gap: 8px !important;
+        gap: 10px !important;
         flex-wrap: wrap !important;
+        margin-top: 0.5rem !important;
         margin-bottom: 0rem !important;
         padding-bottom: 10px !important;
     }
 
-    /* REMOVE ALL STREAMLIT RADIO DOTS */
+    /* REMOVE ALL STREAMLIT RADIO DOTS & SVGs */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label > div:first-child,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label svg,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label input,
@@ -63,15 +65,16 @@ st.markdown("""
     /* Navigation Button Styling */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label {
         position: relative !important;
-        background-color: rgba(255, 255, 255, 0.7) !important;
+        background-color: rgba(255, 255, 255, 0.75) !important;
         border: 1px solid rgba(150, 150, 150, 0.8) !important;
         border-radius: 10px !important;
-        padding: 8px 16px !important;
+        padding: 8px 18px !important;
         cursor: pointer !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         transition: all 0.3s ease !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
     }
 
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label p {
@@ -80,12 +83,12 @@ st.markdown("""
         margin: 0 !important;
     }
 
-    /* Active Tab Underline */
+    /* Active Tab Highlight & Bottom Border */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[data-checked="true"],
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label:has(input:checked) {
         background-color: #ffffff !important;
         border-color: #000000 !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
     }
 
     .nav-divider {
@@ -93,10 +96,10 @@ st.markdown("""
         height: 1px;
         background-color: #888888;
         margin-top: 0.2rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.8rem;
     }
 
-    /* EDITORIAL CONTENT */
+    /* EDITORIAL CONTENT STYLES */
     .editorial-title {
         text-align: center;
         font-size: 2rem;
@@ -131,6 +134,7 @@ st.markdown("""
         text-transform: uppercase;
         margin-top: -15px;
         z-index: 10;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
     .social-icons-container {
@@ -151,21 +155,41 @@ st.markdown("""
         border-radius: 50%;
         background-color: rgba(255, 255, 255, 0.6);
         border: 1px solid rgba(150, 150, 150, 0.5);
+        transition: all 0.3s ease;
+    }
+
+    .social-icon-link:hover {
+        color: #ffffff !important;
+        background-color: #111111 !important;
+        transform: translateY(-2px);
+    }
+
+    /* Mobile View Adjustments */
+    @media (max-width: 600px) {
+        [data-testid="stMainBlockContainer"] {
+            padding-top: 3.5rem !important;
+        }
+        [data-testid="stMainBlockContainer"] [role="radiogroup"] > label {
+            padding: 6px 12px !important;
+        }
+        [data-testid="stMainBlockContainer"] [role="radiogroup"] > label p {
+            font-size: 0.8rem !important;
+        }
     }
     </style>
 """, unsafe_allow_html=True)
 
-# ----------------- NAVIGATION -----------------
+# ----------------- TOP NAVIGATION BAR -----------------
 page = st.radio(
     "Navigation",
-    [" Home", "👽 What IF", " Game Plays", " Contact Details"],
+    ["🏠 Home", "👽 What IF", "🎮 Game Plays", "✉️ Contact Details"],
     horizontal=True,
     label_visibility="collapsed"
 )
 
 st.markdown('<div class="nav-divider"></div>', unsafe_allow_html=True)
 
-# ----------------- PAGES -----------------
+# ----------------- PAGE ROUTING -----------------
 if page.endswith("Home"):
     st.markdown('<div class="editorial-title">About Me</div>',
                 unsafe_allow_html=True)
@@ -202,11 +226,11 @@ if page.endswith("Home"):
         st.markdown(
             """
             <div class="social-icons-container">
-                <a href="https://instagram.com" target="_blank" class="social-icon-link"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com" target="_blank" class="social-icon-link"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.linkedin.com/in/rukmal-manoj-1a47a7376" target="_blank" class="social-icon-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Rukmal03" target="_blank" class="social-icon-link"><i class="fab fa-github"></i></a>
-                <a href="https://facebook.com" target="_blank" class="social-icon-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" class="social-icon-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/in/rukmal-manoj-1a47a7376" target="_blank" class="social-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Rukmal03" target="_blank" class="social-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://facebook.com" target="_blank" class="social-icon-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
             </div>
             """,
             unsafe_allow_html=True
