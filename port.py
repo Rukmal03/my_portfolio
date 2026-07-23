@@ -51,18 +51,20 @@ st.markdown("""
         padding-bottom: 10px !important;
     }
 
-    /* Remove Default Streamlit Radio Indicators */
+    /* ----------------- REMOVE RADIO SELECTION DOT & ORANGE HIGHLIGHTS ----------------- */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label > div:first-child,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label svg,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label input,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] [data-aria-hidden="true"] {
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] [data-aria-hidden="true"],
+    [role="radiogroup"] [data-baseweb="radio"] > div:first-child,
+    [role="radiogroup"] div[aria-checked="true"]::before,
+    [role="radiogroup"] div[aria-checked="false"]::before {
         display: none !important;
         visibility: hidden !important;
         width: 0 !important;
         height: 0 !important;
     }
 
-    /* COMPLETELY REMOVE STREAMLIT DEFAULT ORANGE HIGHLIGHTS / ACCENTS */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] *,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label *,
@@ -72,7 +74,6 @@ st.markdown("""
         box-shadow: none !important;
         -webkit-tap-highlight-color: transparent !important;
         accent-color: #000000 !important;
-        border-color: rgba(150, 150, 150, 0.8);
     }
 
     /* BASE TAB ANIMATED STYLING */
@@ -125,7 +126,7 @@ st.markdown("""
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
     }
 
-    /* PREVENT FOCUS-VISIBLE ORANGE RINGS IN STREAMLIT */
+    /* PREVENT FOCUS OUTLINES */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-within,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-visible,
