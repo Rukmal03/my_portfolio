@@ -4,7 +4,7 @@ import os
 # ----------------- PAGE CONFIG -----------------
 st.set_page_config(
     page_title="Rukmal Manoj | Portfolio",
-    page_icon="💼",
+    page_icon="₄:₂₀",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -15,7 +15,7 @@ st.markdown("""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    /* Prevent blank screen & ensure full view height */
+    /* Global Page Styling */
     html, body, [data-testid="stAppViewContainer"], .stApp {
         background-color: #d5d1d4 !important;
         color: #111111 !important;
@@ -23,7 +23,7 @@ st.markdown("""
         min-height: 100vh !important;
     }
 
-    /* FIX: Top Padding added to push navigation panel down into view */
+    /* Main Container Padding */
     [data-testid="stMainBlockContainer"] {
         padding-top: 4.5rem !important;
         padding-bottom: 2rem !important;
@@ -31,13 +31,13 @@ st.markdown("""
         margin: 0 auto !important;
     }
 
-    /* GLOBAL TEXT READABILITY */
+    /* Text Readability */
     p, span, label, h1, h2, h3, h4, h5, h6, div, a {
         opacity: 1 !important;
         color: #111111 !important;
     }
 
-    /* Hide Sidebar collapse button */
+    /* Hide Sidebar Collapse Button */
     [data-testid="stSidebarCollapseButton"] { display: none !important; }
 
     /* NAVIGATION BAR CONTAINER */
@@ -51,7 +51,7 @@ st.markdown("""
         padding-bottom: 10px !important;
     }
 
-    /* REMOVE ALL STREAMLIT RADIO DOTS & SVGs */
+    /* Remove Default Streamlit Radio Indicators */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label > div:first-child,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label svg,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label input,
@@ -83,9 +83,10 @@ st.markdown("""
         margin: 0 !important;
     }
 
-    /* Active Tab Highlight & Bottom Border */
+    /* Active Tab Highlight & Bottom Border (IPHONE 7 SAFE) */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[data-checked="true"],
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label:has(input:checked) {
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[aria-checked="true"],
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[aria-selected="true"] {
         background-color: #ffffff !important;
         border-color: #000000 !important;
         box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
@@ -156,6 +157,7 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.6);
         border: 1px solid rgba(150, 150, 150, 0.5);
         transition: all 0.3s ease;
+        text-decoration: none !important;
     }
 
     .social-icon-link:hover {
@@ -182,7 +184,7 @@ st.markdown("""
 # ----------------- TOP NAVIGATION BAR -----------------
 page = st.radio(
     "Navigation",
-    ["🏠 Home", "👽 What IF", "🎮 Game Plays", "✉️ Contact Details"],
+    [" 🏠︎ Home", " 📽 What IF", " ☣︎ Game Plays", " ✉ Contact Details"],
     horizontal=True,
     label_visibility="collapsed"
 )
@@ -197,11 +199,14 @@ if page.endswith("Home"):
     st.markdown(
         """
         <div class="editorial-bio">
-            I am a Business Information Systems undergraduate at the University of Sri Jayewardenepura, 
-            currently in my second year. Alongside my academic focus on technology and management, 
-            I am passionate about digital content creation, data analytics, and building digital platforms 
-            that solve real-world problems. I am always eager to connect with like-minded professionals 
-            and explore new opportunities in the tech and business space.
+            Hi, I'm Rukmal Manoj.<br>
+            Technology and an endless curiosity for the unknown are major parts of my life. 
+            As a BIS undergraduate at the University of Sri Jayewardenepura, 
+            my academic world revolves around software, data, and management. 
+            As an Agnostic who views any idea with an open mind, I love learning new things, 
+            finding calm through music, and seeking to understand the true nature of the universe. 
+            Ultimately, my hope is to lead a simple and peaceful life, 
+            while remaining eager to exchange new ideas and work together with others. &nbsp;&nbsp;✌︎︎ ₄:₂₀
         </div>
         """,
         unsafe_allow_html=True
@@ -214,7 +219,7 @@ if page.endswith("Home"):
     with col_center:
         image_path = "rukmal.jpg"
         if os.path.exists(image_path):
-            st.image(image_path, width="stretch")
+            st.image(image_path, use_container_width=True)
         else:
             st.info("💡 Place `rukmal.jpg` in your project directory.")
 
@@ -227,10 +232,9 @@ if page.endswith("Home"):
             """
             <div class="social-icons-container">
                 <a href="https://instagram.com" target="_blank" class="social-icon-link" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com" target="_blank" class="social-icon-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.youtube.com/channel/UCzpd_QGX_KvvpwS0SewgtnA" target="_blank" class="social-icon-link" title="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.linkedin.com/in/rukmal-manoj-1a47a7376" target="_blank" class="social-icon-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/Rukmal03" target="_blank" class="social-icon-link" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://facebook.com" target="_blank" class="social-icon-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
             </div>
             """,
             unsafe_allow_html=True
@@ -238,12 +242,12 @@ if page.endswith("Home"):
 
 elif page.endswith("What IF"):
     st.title("What IF")
-    st.write("Welcome Homies.")
-    st.markdown("### 🎞️ Featured Projects")
+    st.write("Welcome Homies... 𐦂𖨆𐀪𖠋")
+    st.markdown("### Featured Projects ↻ ◁ || ▷ ↺ ⩇⩇:⩇⩇")
     st.info("Portfolio showcase pending.")
 
 elif page.endswith("Game Plays"):
-    st.title("Game Plays")
+    st.title("Game Plays   △ ○ ⛌ □")
     st.write("Game Plays By **@lbedo**.")
 
     col1, col2 = st.columns(2)
@@ -297,4 +301,4 @@ elif page.endswith("Contact Details"):
         </form>
     </div>
     """
-    st.components.v1.html(contact_form_html, height=500, scrolling=True)
+    st.components.v1.html(contact_form_html, height=380, scrolling=False)
