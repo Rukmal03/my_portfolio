@@ -44,7 +44,7 @@ st.markdown("""
     [data-testid="stMainBlockContainer"] [role="radiogroup"] {
         display: flex !important;
         justify-content: center !important;
-        gap: 10px !important;
+        gap: 12px !important;
         flex-wrap: wrap !important;
         margin-top: 0.5rem !important;
         margin-bottom: 0rem !important;
@@ -62,34 +62,62 @@ st.markdown("""
         height: 0 !important;
     }
 
-    /* Navigation Button Styling */
+    /* BASE TAB ANIMATED STYLING */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label {
         position: relative !important;
         background-color: rgba(255, 255, 255, 0.75) !important;
         border: 1px solid rgba(150, 150, 150, 0.8) !important;
-        border-radius: 10px !important;
-        padding: 8px 18px !important;
+        border-radius: 12px !important;
+        padding: 9px 20px !important;
         cursor: pointer !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+        
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+        -webkit-tap-highlight-color: transparent !important;
+        outline: none !important;
+        user-select: none !important;
     }
 
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label p {
         font-size: 0.9rem !important;
         font-weight: 700 !important;
         margin: 0 !important;
+        transition: color 0.3s ease !important;
     }
 
-    /* Active Tab Highlight & Bottom Border (IPHONE 7 SAFE) */
+    /* TAB HOVER ANIMATION */
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label:hover {
+        background-color: #ffffff !important;
+        border-color: #333333 !important;
+        transform: translateY(-4px) !important;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    /* TAB CLICK / PRESS ANIMATION */
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] > label:active {
+        transform: translateY(-1px) scale(0.97) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08) !important;
+        transition: transform 0.1s ease !important;
+    }
+
+    /* ACTIVE / SELECTED TAB ANIMATED STATE */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[data-checked="true"],
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[aria-checked="true"],
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[aria-selected="true"] {
         background-color: #ffffff !important;
         border-color: #000000 !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* REMOVE FOCUS OUTLINES */
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus,
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-within,
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-visible {
+        outline: none !important;
     }
 
     .nav-divider {
@@ -166,6 +194,59 @@ st.markdown("""
         transform: translateY(-2px);
     }
 
+    /* ----------------- HOMIES SYMBOLS ANIMATION ----------------- */
+    .homie-symbol {
+        display: inline-block;
+        font-size: 1.5rem;
+        margin: 0 3px;
+        animation: homieBounce 1.8s infinite ease-in-out;
+        transition: all 0.3s ease;
+    }
+
+    .h1 { animation-delay: 0.0s; }
+    .h2 { animation-delay: 0.2s; }
+    .h3 { animation-delay: 0.4s; }
+    .h4 { animation-delay: 0.6s; }
+
+    @keyframes homieBounce {
+        0%, 100% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+        }
+        30% {
+            transform: translateY(-8px) rotate(-10deg) scale(1.2);
+        }
+        60% {
+            transform: translateY(2px) rotate(10deg) scale(1.05);
+        }
+    }
+
+    /* ----------------- PLAYSTATION SYMBOLS ANIMATION ----------------- */
+    .ps-symbol {
+        display: inline-block;
+        font-weight: 900;
+        font-size: 1.6rem;
+        margin: 0 2px;
+        animation: psWave 2s infinite ease-in-out;
+        transition: all 0.3s ease;
+    }
+
+    /* Playstation Iconic Colors */
+    .ps-triangle { color: #000000 !important; animation-delay: 0.0s; } /* Black */
+    .ps-circle   { color: #000000 !important; animation-delay: 0.2s; } /* Black */
+    .ps-cross    { color: #000000 !important; animation-delay: 0.4s; } /* Black */
+    .ps-square   { color: #000000 !important; animation-delay: 0.6s; } /* Black */
+
+    @keyframes psWave {
+        0%, 100% {
+            transform: translateY(0px) scale(1);
+            filter: drop-shadow(0 0 0px transparent);
+        }
+        50% {
+            transform: translateY(-6px) scale(1.2);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+        }
+    }
+
     /* Mobile View Adjustments */
     @media (max-width: 600px) {
         [data-testid="stMainBlockContainer"] {
@@ -176,6 +257,9 @@ st.markdown("""
         }
         [data-testid="stMainBlockContainer"] [role="radiogroup"] > label p {
             font-size: 0.8rem !important;
+        }
+        .ps-symbol, .homie-symbol {
+            font-size: 1.3rem;
         }
     }
     </style>
@@ -242,12 +326,43 @@ if page.endswith("Home"):
 
 elif page.endswith("What IF"):
     st.title("What IF")
-    st.write("Welcome Homies... 𐦂𖨆𐀪𖠋")
+
+    # Animated Homies Greeting
+    st.markdown(
+        """
+        <div style="font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+            <span>Welcome Homies...</span>
+            <span style="display: inline-flex; align-items: center;">
+                <span class="homie-symbol h1">𐦂</span>
+                <span class="homie-symbol h2">𖨆</span>
+                <span class="homie-symbol h3">𐀪</span>
+                <span class="homie-symbol h4">𖠋</span>
+                <span class="homie-symbol h4">👽</span>
+            </span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     st.markdown("### Featured Projects ↻ ◁ || ▷ ↺ ⩇⩇:⩇⩇")
     st.info("Portfolio showcase pending.")
 
 elif page.endswith("Game Plays"):
-    st.title("Game Plays   △ ○ ⛌ □")
+    # Animated Title with Playstation Icons
+    st.markdown(
+        """
+        <h1 style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+            <span>Game Plays</span>
+            <span style="display: inline-flex; align-items: center; gap: 4px;">
+                <span class="ps-symbol ps-triangle">△</span>
+                <span class="ps-symbol ps-circle">○</span>
+                <span class="ps-symbol ps-cross">⛌</span>
+                <span class="ps-symbol ps-square">□</span>
+            </span>
+        </h1>
+        """,
+        unsafe_allow_html=True
+    )
     st.write("Game Plays By **@lbedo**.")
 
     col1, col2 = st.columns(2)
