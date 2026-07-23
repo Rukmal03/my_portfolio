@@ -126,13 +126,7 @@ st.markdown("""
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
     }
 
-    /* PREVENT FOCUS OUTLINES */
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-within,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-visible,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] [data-baseweb="radio"] {
-        outline: none !important;
-        border-color: #000000 !important;
+    
     }
 
     .nav-divider {
@@ -246,10 +240,10 @@ st.markdown("""
     }
 
     /* Playstation Iconic Colors */
-    .ps-triangle { color: #2ecc71 !important; animation-delay: 0.0s; } /* Green */
-    .ps-circle   { color: #e74c3c !important; animation-delay: 0.2s; } /* Red */
-    .ps-cross    { color: #3498db !important; animation-delay: 0.4s; } /* Blue */
-    .ps-square   { color: #e84393 !important; animation-delay: 0.6s; } /* Pink */
+    .ps-triangle { color: #000000 !important; animation-delay: 0.0s; } /* Black */
+    .ps-circle   { color: #000000 !important; animation-delay: 0.2s; } /* Black */
+    .ps-cross    { color: #000000 !important; animation-delay: 0.4s; } /* Black */
+    .ps-square   { color: #000000 !important; animation-delay: 0.6s; } /* Black */
 
     @keyframes psWave {
         0%, 100% {
@@ -352,6 +346,7 @@ elif page.endswith("What IF"):
                 <span class="homie-symbol h2">𖨆</span>
                 <span class="homie-symbol h3">𐀪</span>
                 <span class="homie-symbol h4">𖠋</span>
+                <span class="homie-symbol h5">👽</span>
             </span>
         </div>
         """,
