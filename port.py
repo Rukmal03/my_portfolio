@@ -51,29 +51,15 @@ st.markdown("""
         padding-bottom: 10px !important;
     }
 
-    /* ----------------- REMOVE RADIO SELECTION DOT & ORANGE HIGHLIGHTS ----------------- */
+    /* Remove Default Streamlit Radio Indicators */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label > div:first-child,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label svg,
     [data-testid="stMainBlockContainer"] [role="radiogroup"] label input,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] [data-aria-hidden="true"],
-    [role="radiogroup"] [data-baseweb="radio"] > div:first-child,
-    [role="radiogroup"] div[aria-checked="true"]::before,
-    [role="radiogroup"] div[aria-checked="false"]::before {
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] [data-aria-hidden="true"] {
         display: none !important;
         visibility: hidden !important;
         width: 0 !important;
         height: 0 !important;
-    }
-
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] *,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] label,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] label *,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] input,
-    [data-testid="stMainBlockContainer"] [role="radiogroup"] div {
-        outline: none !important;
-        box-shadow: none !important;
-        -webkit-tap-highlight-color: transparent !important;
-        accent-color: #000000 !important;
     }
 
     /* BASE TAB ANIMATED STYLING */
@@ -90,6 +76,8 @@ st.markdown("""
         
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+        -webkit-tap-highlight-color: transparent !important;
+        outline: none !important;
         user-select: none !important;
     }
 
@@ -98,7 +86,6 @@ st.markdown("""
         font-weight: 700 !important;
         margin: 0 !important;
         transition: color 0.3s ease !important;
-        color: #111111 !important;
     }
 
     /* TAB HOVER ANIMATION */
@@ -116,7 +103,7 @@ st.markdown("""
         transition: transform 0.1s ease !important;
     }
 
-    /* ACTIVE / SELECTED TAB STATE (BLACK BORDER & WHITE BG, NO ORANGE) */
+    /* ACTIVE / SELECTED TAB ANIMATED STATE */
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[data-checked="true"],
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[aria-checked="true"],
     [data-testid="stMainBlockContainer"] [role="radiogroup"] > label[aria-selected="true"] {
@@ -126,7 +113,11 @@ st.markdown("""
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
     }
 
-    
+    /* REMOVE FOCUS OUTLINES */
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus,
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-within,
+    [data-testid="stMainBlockContainer"] [role="radiogroup"] label:focus-visible {
+        outline: none !important;
     }
 
     .nav-divider {
@@ -346,7 +337,7 @@ elif page.endswith("What IF"):
                 <span class="homie-symbol h2">𖨆</span>
                 <span class="homie-symbol h3">𐀪</span>
                 <span class="homie-symbol h4">𖠋</span>
-                <span class="homie-symbol h5">👽</span>
+                <span class="homie-symbol h4">👽</span>
             </span>
         </div>
         """,
